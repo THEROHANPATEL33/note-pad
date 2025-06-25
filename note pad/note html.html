@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Note Pad</title>
-    <link rel="stylesheet" href="C:\Users\rdpat\OneDrive\Desktop\note css.css">
+    <link rel="stylesheet" href="C:\Users\rdpat\OneDrive\Desktop\note pad\note css.css">
+    <audio id="bgm" autoplay loop hidden>
+  <source src="your-music.mp3" type="audio/mp3">
+  <h1 class="animate__animated animate__fadeInDown">My Flask Notes</h1>
+
+</audio>
 </head>
 <body>
     <div class="container">
@@ -12,11 +17,62 @@
             <textarea name="note" placeholder="Write your note here..."></textarea><br>
             <button type="submit">Save</button>
         </form>
-        <div class="notes">
-             
-                
+        <div class="notes">      
             {write your experience}
         </div>
     </div>
+    <script>
+    let notes = JSON.parse(localStorage.getItem("notes")) || [];
+    // Function to display notes
+    function displayNotes() {
+        const notesContainer = document.querySelector(".notes");
+        notesContainer.innerHTML = "";
+        notes.forEach(note => {
+            const div = document.createElement("div");
+            div.className = "note";
+            const date = new Date(note.timestamp).toLocaleString();
+            div.innerHTML = `<strong>${date}</strong><br>${note.content}`;
+            notesContainer.appendChild(div);
+        });
+    }
+    // Handle form submission
+    document.querySelector("form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const textarea = document.querySelector("textarea");
+        const content = textarea.value.trim();
+        if (content) {
+            const note = {
+                content: content,
+                timestamp: new Date().getTime()
+            };
+            notes.push(note);
+            localStorage.setItem("notes", JSON.stringify(notes));
+            textarea.value = "";
+            displayNotes();
+        }
+    });
+    function displayNotes() {
+    const notesContainer = document.querySelector(".notes");
+    notesContainer.innerHTML = "";
+    notes.forEach((note, index) => {
+        const div = document.createElement("div");
+        div.className = "note";
+        const date = new Date(note.timestamp).toLocaleString();
+        div.innerHTML = `
+            <span class="timestamp">${date}</span>
+            <p>${note.content}</p>
+            <button class="delete-btn" onclick="deleteNote(${index})">Delete</button>
+        `;
+        notesContainer.appendChild(div);
+    });
+}
+function deleteNote(index) {
+    notes.splice(index, 1);
+    localStorage.setItem("notes", JSON.stringify(notes));
+    displayNotes();
+}
+    // Initial render
+    displayNotes();
+</script>
 </body>
 </html>

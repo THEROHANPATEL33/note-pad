@@ -1,12 +1,12 @@
 body {
     font-family: sans-serif;
-    background: #ffffff;
+    background: #3f3f3f;
     padding: 20px;
 }
 .container {
     max-width: 600px;
     margin: auto;
-    background: rgb(255, 255, 255);
+    background: rgb(77, 61, 61);
     padding: 20px;
     border-radius: 8px;
 }
@@ -19,5 +19,81 @@ textarea {
     background: #ffffff;
     padding: 10px;
     margin: 5px 0;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
     border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #00ff0d;
+}
+.note-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+body {
+    background: linear-gradient(-45deg, #00059d, #720510, #b92d91, #a18cd1);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+    padding: 20px;
+}
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+}
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.note {
+    animation: fadeInUp 0.6s ease;
+}
+.delete-btn {
+    margin-top: 8px;
+    padding: 4px 10px;
+    background-color: #29ce07;
+    color: rgb(162, 92, 92);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.delete-btn:hover {
+    background-color: #29ce07;
+}
+body {
+  background: linear-gradient(-45deg, 4#BBFBFF, #8DD8FF, #4E71FF, #5409DA);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+button:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+#cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #910000;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
 }
